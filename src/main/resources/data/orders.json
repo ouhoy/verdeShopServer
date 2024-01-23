@@ -1,0 +1,49 @@
+[
+  {
+    "userId": 1,
+    "products": [
+      {
+        "id": 1,
+        "name": "Water-Repellent Hooded Jacket",
+        "price": 110,
+        "quantity": 1,
+        "color": "blue",
+        "imageSrc": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/490bbcfa-9a33-40c6-b6f5-18f97c1442a5/unlimited-mens-water-repellent-hooded-versatile-jacket-56pDjs.png",
+        "size": "M",
+        "href": "/product/1"
+      },
+      {
+        "id": 2,
+        "name": "Nike Sportswear Club Fleece",
+        "price": 48,
+        "quantity": 1,
+        "color": "red",
+        "imageSrc": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/209bd882-84fd-47dc-bb85-2cd78856d859/sportswear-club-fleece-pullover-hoodie-Gw4Nwq.png",
+        "size": "M",
+        "href": "/product/2"
+      },
+      {
+        "id": 5,
+        "name": "Nike Dri-FIT ADV Rise",
+        "price": 32,
+        "quantity": 1,
+        "color": "green",
+        "imageSrc": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/2a38c2ce-1221-4d57-9471-22ca0f1d0ce3/dri-fit-adv-rise-structured-swooshflex-cap-BXVlFc.png",
+        "size": "XXS",
+        "href": "/product/5"
+      }
+    ],
+    "address": {
+      "firstName": "Abdallah",
+      "lastName": "Dahmou",
+      "email": "abdullah.dahmou@gmail.com",
+      "country": "Morocco",
+      "street": "Bloc A N001 Lot Morocco",
+      "city": "Agadir",
+      "state": "Souss Massa ",
+      "zip": "80000"
+    },
+    "date": "January 23, 2024",
+    "total": 195
+  }
+]

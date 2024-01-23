@@ -1,6 +1,8 @@
 package com.dahmou.verdeShop.config;
 
+import com.dahmou.verdeShop.model.Order;
 import com.dahmou.verdeShop.model.Product;
+import com.dahmou.verdeShop.repository.OrderCollectionRepository;
 import com.dahmou.verdeShop.repository.ProductCollectionRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,11 +17,12 @@ import java.util.List;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final ProductCollectionRepository repository;
+    private final ProductCollectionRepository productCollectionRepository;
+    private final OrderCollectionRepository orderCollectionRepository;
     private final ObjectMapper objectMapper;
-
-    public DataLoader(ProductCollectionRepository repository, ObjectMapper objectMapper) {
-        this.repository = repository;
+    public DataLoader(ProductCollectionRepository productCollectionRepository, OrderCollectionRepository orderCollectionRepository, ObjectMapper objectMapper) {
+        this.productCollectionRepository = productCollectionRepository;
+        this.orderCollectionRepository = orderCollectionRepository;
         this.objectMapper = objectMapper;
     }
 
@@ -31,7 +34,7 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadProductsFromJson() {
 
-        if (repository.getAllProducts().isEmpty()) {
+        if (productCollectionRepository.getAllProducts().isEmpty()) {
             try {
                 // Load products from the JSON file
                 InputStream inputStream = new ClassPathResource("/data/products.json").getInputStream();
@@ -40,7 +43,7 @@ public class DataLoader implements CommandLineRunner {
 
                 // Save each product to the database
                 for (Product product : products) {
-                    repository.createProduct(product);
+                    productCollectionRepository.createProduct(product);
                 }
 
                 System.out.println("Products loaded successfully.");
@@ -50,6 +53,23 @@ public class DataLoader implements CommandLineRunner {
             }
         }
 
+        if (orderCollectionRepository.getAllOrders().isEmpty()) {
+            try {
+                // Load orders from the JSON file
+                InputStream inputStream = new ClassPathResource("/data/orders.json").getInputStream();
+                List<Order> orders = objectMapper.readValue(inputStream, new TypeReference<List<Order>>() {
+                });
 
+                // Save each order to the database
+                for (Order order : orders) {
+                    orderCollectionRepository.createOrder(order);
+                }
+
+                System.out.println("Orders loaded successfully.");
+
+            } catch (IOException e) {
+                System.err.println("Error loading orders from JSON: " + e.getMessage());
+            }
+        }
     }
 }
