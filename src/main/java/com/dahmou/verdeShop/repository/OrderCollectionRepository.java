@@ -33,11 +33,12 @@ public class OrderCollectionRepository {
 
             JsonNode products = objectMapper.readTree(rs.getString("products"));
             if (products.isArray()) {
-                List<JsonNode> productNodes = objectMapper.convertValue(products, new TypeReference<List<JsonNode>>() {});
-                return new Order(rs.getInt("id"), productNodes, address, rs.getString("date"),rs.getInt("total"), rs.getInt("user_id"));
+                List<JsonNode> productNodes = objectMapper.convertValue(products, new TypeReference<List<JsonNode>>() {
+                });
+                return new Order(rs.getInt("id"), productNodes, address, rs.getString("date"), rs.getInt("total"), rs.getInt("user_id"));
             } else {
                 // Handle string data (e.g., log a warning or store as a single string)
-                return new Order(rs.getInt("id"), List.of(products), address, rs.getString("date"), rs.getInt("total"),rs.getInt("user_id"));
+                return new Order(rs.getInt("id"), List.of(products), address, rs.getString("date"), rs.getInt("total"), rs.getInt("user_id"));
             }
 
 
@@ -60,7 +61,7 @@ public class OrderCollectionRepository {
 
         try {
             String sql = "INSERT INTO Orders (products, address, date,total, user_id) VALUES (?,?, ?, ?, ?)";
-            jdbcTemplate.update(sql, objectMapper.writeValueAsString(order.products()), objectMapper.writeValueAsString(order.address()), order.date(),order.total(), order.userId());
+            jdbcTemplate.update(sql, objectMapper.writeValueAsString(order.products()), objectMapper.writeValueAsString(order.address()), order.date(), order.total(), order.userId());
 
         } catch (Exception e) {
             // Handle the exception (log it or throw a specific exception)
@@ -91,13 +92,21 @@ public class OrderCollectionRepository {
         try {
             String sql = "SELECT * FROM Orders WHERE id=?";
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, OrderCollectionRepository::mapRow);
-        }catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             // Handle empty result - throw a custom exception or return null
             return null; // Or throw a custom exception
         }
     }
 
-
+    public List<Order> getUserOrders(int userId) {
+        try {
+            String sql = "SELECT * FROM Orders WHERE user_id=?";
+            return jdbcTemplate.query(sql, new Object[]{userId}, OrderCollectionRepository::mapRow);
+        } catch (EmptyResultDataAccessException e) {
+            // Handle empty result - throw a custom exception or return an empty list
+            return null; // Or throw a custom exception
+        }
+    }
 
 
 }

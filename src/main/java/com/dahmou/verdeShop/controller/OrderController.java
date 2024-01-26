@@ -23,19 +23,25 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<Order> findAll(){
+    public List<Order> findAll() {
         return repository.getAllOrders();
     }
 
 
     @GetMapping("/{id}")
-    public Order findById(@PathVariable int id){
+    public Order findById(@PathVariable int id) {
         Order order = repository.getOrder(id);
         if (order == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return order;
     }
+
+    @GetMapping("/orderHistory/{id}")
+    public List<Order> findAllUserOrders(@PathVariable int id) {
+        return repository.getUserOrders(id);
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public void create(@RequestBody Order order) {
@@ -50,8 +56,8 @@ public class OrderController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/{id}")
-    public void update( @PathVariable int id, @RequestBody Order order) {
-        repository.updateOrder(id,order);
+    public void update(@PathVariable int id, @RequestBody Order order) {
+        repository.updateOrder(id, order);
     }
 
 }
