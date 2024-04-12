@@ -2,6 +2,12 @@
 
 VerdeShop is a full-stack e-commerce platform built using Vue.js, Spring Boot, Tailwind CSS, TypeScript, and H2 database. It offers a comprehensive set of features for both customers and administrators, providing an intuitive and seamless shopping experience.
 
+
+## Demo
+
+Check out the live demo of VerdeShop at [verdeshop.onrender.com](https://verdeshop.onrender.com/) to explore its features and functionalities.
+
+
 ## Features
 
 - **Product Management**: Admins can easily add, edit, and remove products from the catalog.
@@ -31,10 +37,6 @@ To run the project locally, follow these steps:
 6. Access the application in your web browser.
 
 For detailed instructions on installation and setup, refer to the README files in the respective repositories.
-
-## Demo
-
-Check out the live demo of VerdeShop at [verdeshop.onrender.com](https://verdeshop.onrender.com/) to explore its features and functionalities.
 
 ## Contributing
 
