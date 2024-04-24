@@ -1,3 +1,6 @@
+## IMPORTANT NOTICE: When you run the project online for the first time, it might take a few seconds for the SpringBoot Backend Server to wake up since it is hosted on a free hosting tier.
+
+
 # VerdeShop - An E-commerce Platform
 
 VerdeShop is a full-stack e-commerce platform built using Vue.js, Spring Boot, Tailwind CSS, TypeScript, and H2 database. It offers a comprehensive set of features for both customers and administrators, providing an intuitive and seamless shopping experience.
